@@ -34,6 +34,10 @@ export function createWinstonProviders(loggerOpts: WinstonModuleOptions): Provid
       useFactory: () => createLogger(loggerOpts),
     },
     {
+      provide: LoggerService,
+      useExisting: WINSTON_MODULE_PROVIDER,
+    },
+    {
       provide: WINSTON_MODULE_NEST_PROVIDER,
       useFactory: (logger: Logger) => {
         return new WinstonLogger(logger);
